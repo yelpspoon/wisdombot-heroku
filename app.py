@@ -7,9 +7,6 @@ import urllib, random, csv
 
 app = Flask(__name__)
 
-twilio_host='0.0.0.0'
-twilio_port = 80
-
 def rand():
     with open(r'truisms.csv') as f:
         reader = csv.reader(f)
@@ -19,7 +16,6 @@ def rand():
 
 @app.route("/sms", methods=['GET', 'POST'])
 def sms():
-    #client = Client(account_sid, auth_token)
     F = request.values.get('From')
     T = request.values.get('To')
     B = request.values.get('Body')
@@ -36,10 +32,4 @@ def hello():
 
 @app.route("/about")
 def about():
-    return "DJC About page.  :)"
-
-'''
-if __name__ == '__main__':
-    #app.run(host='0.0.0.0', port=5000, debug=True)
-    app.run(host=twilio_host, port=twilio_port, debug=True)
-'''
+    return "The About page.  :)"
